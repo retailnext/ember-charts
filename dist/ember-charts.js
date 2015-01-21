@@ -2023,13 +2023,21 @@ Ember.Charts.VerticalBarComponent = Ember.Charts.ChartComponent.extend(Ember.Cha
     return this.get('stackBars') || this.get('isGrouped') && this.get('legendItems.length') > 1;
   }).property('stackBars', 'isGrouped', 'legendItems.length'),
   legendItems: Ember.computed(function() {
-    var getSeriesColor;
+    var getSeriesColor, groupName, labels, values, _ref;
     getSeriesColor = this.get('getSeriesColor');
-    return this.get('individualBarLabels').map(function(d, i) {
+    labels = [];
+    _ref = this.get('groupedData');
+    for (groupName in _ref) {
+      values = _ref[groupName];
+      labels.push(values);
+    }
+    return _.uniq(_.flatten(labels), function(item) {
+      return item.label;
+    }).map(function(d, i) {
       var color;
       color = getSeriesColor(d, i);
       return {
-        label: d,
+        label: d.label,
         fill: color,
         stroke: color,
         icon: function() {

@@ -256,9 +256,13 @@ Ember.Charts.VerticalBarComponent = Ember.Charts.ChartComponent.extend(
 
   legendItems: Ember.computed ->
     getSeriesColor = @get 'getSeriesColor'
-    @get('individualBarLabels').map (d, i) ->
+    labels = []
+    for groupName, values of @get('groupedData')
+      labels.push(values)
+
+    _.uniq(_.flatten(labels), (item) -> item.label).map (d, i) ->
       color = getSeriesColor(d, i)
-      label: d
+      label: d.label
       fill: color
       stroke: color
       icon: -> 'square'
