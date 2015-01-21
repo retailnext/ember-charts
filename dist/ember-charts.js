@@ -1843,7 +1843,7 @@ Ember.Charts.VerticalBarComponent = Ember.Charts.ChartComponent.extend(Ember.Cha
     return _results;
   }).property('groupedData'),
   isGrouped: Ember.computed(function() {
-    return this.get('groupNames.length') > 1;
+    return this.get('groupNames.length') > 0;
   }).property('groupNames.length'),
   finishedData: Ember.computed(function() {
     var d, groupName, stackedValues, values, y0, _i, _len, _ref, _ref1, _results, _results1;

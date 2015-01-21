@@ -62,7 +62,7 @@ Ember.Charts.VerticalBarComponent = Ember.Charts.ChartComponent.extend(
   # labels will be 1. If we are passed ungrouped data we will display
   # each data object in its own group.
   isGrouped: Ember.computed ->
-    @get('groupNames.length') > 1
+    @get('groupNames.length') > 0
   .property 'groupNames.length'
 
   finishedData: Ember.computed ->
